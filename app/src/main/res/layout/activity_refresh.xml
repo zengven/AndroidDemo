@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     tools:context="pub.ven.androiddemo.activity.RefreshActivity">
 
+
     <FrameLayout
         android:id="@+id/ll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6600ff00"></FrameLayout>
+        android:background="#6600ff00">
 
-    <pub.ven.androiddemo.widget.SwipeRefreshLayout
+    </FrameLayout>
+    <pub.ven.androiddemo.widget.SwipeRefreshToLayout
         android:id="@+id/srl_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,10 +22,9 @@
             android:id="@+id/lv_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible"
-            android:background="#66000000">
-
+            android:overScrollMode="never"
+            android:visibility="visible">
         </ListView>
-    </pub.ven.androiddemo.widget.SwipeRefreshLayout>
+    </pub.ven.androiddemo.widget.SwipeRefreshToLayout>
 
 </RelativeLayout>
