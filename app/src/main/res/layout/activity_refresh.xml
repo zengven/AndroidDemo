@@ -10,7 +10,8 @@
         android:id="@+id/ll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#6600ff00">
+        android:background="#6600ff00"
+        android:visibility="gone">
 
     </FrameLayout>
     <pub.ven.androiddemo.widget.SwipeRefreshToLayout

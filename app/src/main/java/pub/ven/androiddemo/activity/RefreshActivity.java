@@ -1,8 +1,12 @@
 package pub.ven.androiddemo.activity;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +17,23 @@ import android.widget.TextView;
 import pub.ven.androiddemo.R;
 import pub.ven.androiddemo.config.Cheeses;
 import pub.ven.androiddemo.widget.SwipeRefreshToLayout;
+import pub.ven.androiddemo.widget.SwipeRefreshToLayout.OnRefreshListener;
 
 
 public class RefreshActivity extends AppCompatActivity {
-
+    private static final String TAG = "RefreshActivity";
     private Context mContext;
     private SwipeRefreshToLayout refreshLayout;
 
-//    private Handler mHandler=new Handler(){
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            refreshLayout.setRefreshing(false);
-//        }
-//    };
+    private Handler mHandler=new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            refreshLayout.onRefreshComplete();
+        }
+    };
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +50,25 @@ public class RefreshActivity extends AppCompatActivity {
             }
         });
 
-//        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                mHandler.sendEmptyMessageDelayed(1,1000);
-//            }
-//        });
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mHandler.removeCallbacksAndMessages(null);
+                mHandler.sendEmptyMessageDelayed(1,5000);
+            }
 
+            @Override
+            public void onLoadMore() {
+                mHandler.removeCallbacksAndMessages(null);
+                mHandler.sendEmptyMessageDelayed(1,5000);
+            }
+        });
+        refreshLayout.setMode(SwipeRefreshToLayout.Mode.PullDown);
+        refreshLayout.setAutoRefreshing();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }
