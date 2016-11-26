@@ -34,7 +34,7 @@ public class SwipeRefreshToLayout extends RelativeLayout implements AbsListView.
     private static final float DRAG_RATE = .5f;//阻尼系数
     private boolean mRefreshing = false; //是否处于刷新状态
     private boolean isLoadMore = false;
-    private Mode currentMode = Mode.PullDown;//设置刷新模式,默认下拉刷新
+    private Mode currentMode = Mode.PullUp;//设置刷新模式,默认下拉刷新
 
     private View mDragView;
     private boolean mIsBeingDragged = false; //

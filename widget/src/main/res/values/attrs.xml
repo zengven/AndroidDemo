@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TagTextView">
+        <attr name="tagStyle" format="enum">
+            <enum name="triangle" value="1"/>
+            <enum name="circle" value="2"/>
+        </attr>
+        <attr name="tagWidth" format="dimension" />
+        <attr name="tagHeight" format="dimension" />
+        <attr name="tagVisible" format="boolean" />
+        <attr name="tagTopRightRadius" format="dimension" />
+        <attr name="tagColor" format="color"/>
+    </declare-styleable>
+</resources>
