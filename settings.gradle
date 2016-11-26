@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-include ':app', ':emoji', ':share', ':widget'
-=======
-include ':app', ':emoji', ':share', ':reply'
->>>>>>> 91bba06be752afcf84ab1b65d429aa3a38205c45
+include ':app', ':emoji', ':share', ':widget', ':reply'
