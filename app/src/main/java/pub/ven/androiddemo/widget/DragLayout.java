@@ -1,8 +1,6 @@
 package pub.ven.androiddemo.widget;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff.Mode;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
@@ -240,7 +238,7 @@ public class DragLayout extends FrameLayout {
 
 
         //		3. 背景: 亮度变化 黑色 -> 透明色
-        getBackground().setColorFilter((Integer) evaluateColor(percent, Color.BLACK, Color.TRANSPARENT), Mode.SRC_OVER);
+//        getBackground().setColorFilter((Integer) evaluateColor(percent, Color.BLACK, Color.TRANSPARENT), Mode.SRC_OVER);
     }
 
     /**

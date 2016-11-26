@@ -157,7 +157,7 @@ public class SwipeRefreshToLayout extends RelativeLayout implements AbsListView.
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         if ((canChildScrollUp() && canChildScrollDown()) || mRefreshing || isLoadMore) {
-            Log.i(TAG, "onInterceptTouchEvent: mRefreshing : "+mRefreshing);
+            Log.i(TAG, "onInterceptTouchEvent: mRefreshing : " + mRefreshing);
             return false; //不拦截事件
         }
         switch (ev.getAction()) {
@@ -169,7 +169,7 @@ public class SwipeRefreshToLayout extends RelativeLayout implements AbsListView.
                     return false;
                 }
                 mInitDownY = initDownY;
-                Log.i(TAG, "onInterceptTouchEvent: ACTION_DOWN mInitDownY:"+mInitDownY);
+                Log.i(TAG, "onInterceptTouchEvent: ACTION_DOWN mInitDownY:" + mInitDownY);
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -257,7 +257,8 @@ public class SwipeRefreshToLayout extends RelativeLayout implements AbsListView.
                         //执行动画
                         createAnimatorTranslationY(mDragView, -mDefaultHeight, mFooterView);
                         isLoadMore = true;
-                        listener.onLoadMore();
+                        if (listener != null)
+                            listener.onLoadMore();
                     } else {
                         createAnimatorTranslationY(mDragView, 0, mFooterView);
                         isLoadMore = false;

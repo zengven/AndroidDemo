@@ -9,7 +9,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+<<<<<<< HEAD
             android:name=".activity.MainActivity"
+=======
+            android:name=".activity.DragActivity"
+>>>>>>> 91bba06be752afcf84ab1b65d429aa3a38205c45
             android:theme="@style/AppTheme.ActivityTheme">
 
         </activity>
@@ -18,6 +22,7 @@
             android:name=".activity.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme" />
+<<<<<<< HEAD
         <activity android:name=".activity.DragActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +30,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+=======
+        <activity android:name=".activity.MainActivity"></activity>
+>>>>>>> 91bba06be752afcf84ab1b65d429aa3a38205c45
     </application>
 
 </manifest>
