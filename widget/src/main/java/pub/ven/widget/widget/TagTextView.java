@@ -31,7 +31,7 @@ public class TagTextView extends TextView {
     private boolean mTagVisible;
     private int mTagStyle;
     private int mTagColor;
-    private float mTagTopRightRadius;
+    private float mTagRadius;
 
     private Paint mPaint;
     private Path mPath;
@@ -62,15 +62,15 @@ public class TagTextView extends TextView {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TagTextView);
             mTagWidth = typedArray.getDimensionPixelSize(R.styleable.TagTextView_tagWidth, 0);
             mTagHeight = typedArray.getDimensionPixelSize(R.styleable.TagTextView_tagHeight, 0);
-            mTagTopRightRadius = typedArray.getDimensionPixelSize(R.styleable.TagTextView_tagTopRightRadius, 0);
+            mTagRadius = typedArray.getDimensionPixelSize(R.styleable.TagTextView_tagRadius, 0);
             mTagColor = typedArray.getColor(R.styleable.TagTextView_tagColor, Color.WHITE);
             mTagVisible = typedArray.getBoolean(R.styleable.TagTextView_tagVisible, false);
-            mTagStyle = typedArray.getInt(R.styleable.TagTextView_tagStyle,-1);
-            Log.i(TAG, "init: mTagWidth : " + mTagWidth + " mTagHeight: " + mTagHeight + " mTagTopRightRadius: " + mTagTopRightRadius + " mTagVisible: " + mTagVisible + " mTagStyle: " + mTagStyle);
+            mTagStyle = typedArray.getInt(R.styleable.TagTextView_tagStyle, -1);
+            Log.i(TAG, "init: mTagWidth : " + mTagWidth + " mTagHeight: " + mTagHeight + " mTagRadius: " + mTagRadius + " mTagVisible: " + mTagVisible + " mTagStyle: " + mTagStyle);
             typedArray.recycle();
         }
         mPaint = new Paint();
-        mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);//设置抗锯齿标志
+//        mPaint.setFlags(Paint.ANTI_ALIAS_FLAG);//设置抗锯齿标志
         mPaint.setAntiAlias(true); //抗锯齿
         mPaint.setDither(true); //防抖动
         mPaint.setStyle(Paint.Style.FILL); //这个镂空
@@ -85,17 +85,16 @@ public class TagTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mTagVisible) {
+            int measuredWidth = getMeasuredWidth();
+            mPath.reset();
+            mRectF.setEmpty();
+            mPaint.setColor(mTagColor);//设置背景颜色
             switch (mTagStyle) {
                 case TRIANGLE:
-                    int measuredWidth = getMeasuredWidth();
-                    mPath.reset();
-                    mPaint.reset();
-                    mPaint.setColor(mTagColor);//设置背景颜色
                     mPath.moveTo(measuredWidth - mTagWidth, 0);
-                    mPath.lineTo(measuredWidth - mTagTopRightRadius, 0);
-                    if (mTagTopRightRadius != 0) {
-                        mRectF.setEmpty();
-                        mRectF.set(measuredWidth - 2 * mTagTopRightRadius, 0, measuredWidth, 2 * mTagTopRightRadius);
+                    mPath.lineTo(measuredWidth - mTagRadius, 0);
+                    if (mTagRadius != 0) {
+                        mRectF.set(measuredWidth - 2 * mTagRadius, 0, measuredWidth, 2 * mTagRadius);
                         mPath.arcTo(mRectF, 270, 90);
                     }
                     mPath.lineTo(measuredWidth, mTagHeight);
@@ -103,7 +102,9 @@ public class TagTextView extends TextView {
                     canvas.drawPath(mPath, mPaint);
                     break;
                 case CIRCLE:
-
+                    mRectF.set(measuredWidth - 2 * mTagRadius, 0, measuredWidth, 2 * mTagRadius);
+                    mPath.addArc(mRectF, 0, 360);
+                    canvas.drawPath(mPath, mPaint);
                     break;
                 default:
                     break;
@@ -145,7 +146,7 @@ public class TagTextView extends TextView {
      * @param pixels
      */
     public void setTagTopRightRadius(int pixels) {
-        mTagTopRightRadius = pixels;
+        mTagRadius = pixels;
     }
 
     /**
@@ -160,9 +161,10 @@ public class TagTextView extends TextView {
 
     /**
      * set tag style
+     *
      * @param style
      */
-    public void setTagStyle(int style){
+    public void setTagStyle(int style) {
 
     }
 

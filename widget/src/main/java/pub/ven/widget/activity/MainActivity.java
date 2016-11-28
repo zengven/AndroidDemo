@@ -6,6 +6,7 @@ import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
 import pub.ven.widget.R;
+import pub.ven.widget.widget.SmartImageLayout;
 import pub.ven.widget.widget.TagTextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,5 +35,14 @@ public class MainActivity extends AppCompatActivity {
 //        mTtvTag.setTagWidth(40);
 //        mTtvTag.setTagHeight(40);
 //        mTtvTag.setTagTopRightRadius(12);
+        SmartImageLayout mImages = (SmartImageLayout) findViewById(R.id.sil_images);
+//        for (int i = 0; i < 2; i++) {
+//            ImageView imageView = new ImageView(getApplicationContext());
+//            imageView.setImageResource(R.mipmap.ic_launcher);
+//            if (i==1){
+//                imageView.setScaleType(ImageView.ScaleType.CENTER);
+//            }
+//            mImages.addView(imageView);
+//        }
     }
 }

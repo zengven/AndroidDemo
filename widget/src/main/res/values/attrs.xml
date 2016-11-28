@@ -8,7 +8,7 @@
         <attr name="tagWidth" format="dimension" />
         <attr name="tagHeight" format="dimension" />
         <attr name="tagVisible" format="boolean" />
-        <attr name="tagTopRightRadius" format="dimension" />
+        <attr name="tagRadius" format="dimension" />
         <attr name="tagColor" format="color"/>
     </declare-styleable>
 </resources>
